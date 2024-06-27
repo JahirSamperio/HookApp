@@ -2,6 +2,10 @@ import react, { useEffect, useState } from 'react'
 
 export const useFetch = (url) => {
 
+    //Constante de cache
+    //La idea es almacenar el url en un arreglo junto con la data del fetch
+    const localCache = {}
+
   
     const [state, setState] = useState({
         data: null,
@@ -31,6 +35,17 @@ export const useFetch = (url) => {
     }
 
     const getFetch = async() => {
+
+        if(localCache[url]) {
+            console.log('Usando cache');
+            setState({
+                data: localCache[url],
+                isLoading:false,
+                hasError: false,
+                error: null
+            })
+            return;
+        }
         
         setLoadingState();
 
@@ -58,10 +73,11 @@ export const useFetch = (url) => {
             hasError: false,
             error: null
         })
-        // return data
+        // manejo de cache
+        localCache[url] = data;
     }
 
-    // manejo de cache
+
     
 
     return {
