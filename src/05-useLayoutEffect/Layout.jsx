@@ -1,11 +1,10 @@
 import { useEffect } from "react";
 import { useCounter,useFetch } from "../hooks";
-import { LoadingMessage } from "./LoadingMessage";
-import { PokemonCard } from "./PokemonCard";
+import { LoadingMessage, PokemonCard } from "../03-examples";
 
 
 
-export const MultipleCustomHooks = () => {
+export const Layout = () => {
 
     const {counter, decrement, increment, reset} = useCounter(1);
 
