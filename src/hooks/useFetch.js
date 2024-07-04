@@ -83,7 +83,6 @@ export const useFetch = (url) => {
     return {
         data: state.data,
         isLoading: state.isLoading,
-        hasError: state.hasError,
-        errorMessage: state.errorMessage
+        hasError: state.hasError
     }
 }
