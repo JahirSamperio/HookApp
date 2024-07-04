@@ -1,12 +1,16 @@
-import { Routes, Route } from "react-router-dom"
+import { Routes, Route, Navigate, Link } from "react-router-dom"
 import {HomePage} from './HomePage'
 import {AboutPage} from './AboutPage'
 import {LoginPage} from './LoginPage'
+import { NavBar } from "./NavBar"
+import { UserProvider } from "./context/UserProvider"
 
 export const MainApp = () => {
     return (
-        <>
+        <UserProvider>
             <h1>Main App</h1>
+
+            <NavBar />
             <hr/>
 
             <Routes>
@@ -14,10 +18,10 @@ export const MainApp = () => {
                 <Route path='login' element={<LoginPage/>} />
                 <Route path='about' element={<AboutPage/>} />
 
-                <Route path='/*' element={<AboutPage/>} /> //Comodin para rutas que no existan y redirigirlas
+                <Route path='/*' element={<Navigate to='/about'/>} /> //Comodin para rutas que no existan y redirigirlas
 
 
             </Routes>
-        </>
+        </UserProvider>
     )
 }
